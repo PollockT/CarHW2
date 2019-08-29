@@ -1,6 +1,7 @@
 package Car;
 
 import java.util.Scanner;
+import java.util.logging.*;
 
 public class MyCar {
 	
@@ -18,7 +19,7 @@ public class MyCar {
 	private static Boolean OnorOff = false; //true = on and false = off
 	
 	
-	public static void main(String[] args){
+	public void ignition(){
 		System.out.println("Would you like to start your car?");
 		turnOn(OnorOff);
 		
@@ -32,11 +33,15 @@ public class MyCar {
 			String action = sc.next();
 			sc.close();
 			if(action.equals("A")) {
-				//TODO: Accelerate
+				System.out.println("How fast do you want to go in miles per hour?");
+				Scanner sc1 = new Scanner(System.in);
+				int gasPedal = sc1.nextInt();
+				sc1.close();
+				accelerateSpeed(gasPedal);
 			}else if(action.equals("B")) {
 				//TODO: Brake
 			}else if(action.equals("S")) {
-				//TODO: call current speed
+				toStringSpeed();
 			}else if(action.equals("G")) {
 				//TODO: Call current gear
 			}else if(action.equals("O")) {
@@ -52,7 +57,7 @@ public class MyCar {
 	 * @param x how much your asking the car to accelerate
 	 * @return speed the car is traveling
 	 */
-	public int accelerateSpeed(int x) {
+	public static int accelerateSpeed(int x) {
 		//TODO: increase by a certain amount
 		//TODO: set speedCurrent with increase
 		//TODO: return that amount to 		
@@ -119,6 +124,10 @@ public class MyCar {
 		
 	}
 	
+	public static void toStringSpeed() {
+		System.out.println(getSpeedCurrent() + "MPH");
+	}
+
 	//setters and getters block, nothing interesting here
 	public String getModel(){return model;}
 	public void setModel(String model){this.model = model;}
