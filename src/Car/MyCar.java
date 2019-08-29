@@ -4,10 +4,11 @@ import java.util.Scanner;
 import java.util.logging.*;
 
 public class MyCar {
-	
-	private int odometer;
-	private int tackometer;
-	private int speedCurrent;
+		
+
+	private int odometer = 0;
+	private int tackometer = 0;
+	private int speedCurrent = 0;
 	private final int  YEAR = 2016;
 	
 	private int[] inGear = {1,2,3,4,5,6,7,8};
@@ -16,8 +17,15 @@ public class MyCar {
 	private String type = "RC 200t";
 	private String model = "Lexus";
 	
-	private static Boolean OnorOff = false; //true = on and false = off
+	private  Boolean OnorOff = false; //true = on and false = off
 	
+	Scanner sc = new Scanner(System.in);
+	/**
+	 * class constructor
+	 */
+	public MyCar() {
+		
+	}
 	
 	public void ignition(){
 		System.out.println("Would you like to start your car?");
@@ -25,40 +33,65 @@ public class MyCar {
 		
 		if(OnorOff == true) {
 			System.out.println("Vrooom, your engine is turned on.");
-			//TODO: Do loop to check for continious true state
+			//TODO: Do loop to check for continious true state that engine is on
 			System.out.println("What would youl like to do now?");
 			System.out.println("You can [A]ccelerate, [B]rake, [S]peed check, [G]ear check, [O]dometer check");
-			System.out.print("[T]urn car off, [C]heck car stats => ");
+			System.out.println("[T]urn car off, [C]heck car stats => ");
 			Scanner sc = new Scanner(System.in);
 			String action = sc.next();
-			sc.close();
-			if(action.equals("A")) {
-				System.out.println("How fast do you want to go in miles per hour?");
+			
+			
+			if(action.equals("A")|| action.equals("a")) {
+				System.out.print("How fast do you want to go in miles per hour? => ");
 				Scanner sc1 = new Scanner(System.in);
 				int gasPedal = sc1.nextInt();
 				sc1.close();
+				System.out.println("Accelerating " + gasPedal + " mph!");
 				accelerateSpeed(gasPedal);
-			}else if(action.equals("B")) {
-				//TODO: Brake
-			}else if(action.equals("S")) {
-				toStringSpeed();
-			}else if(action.equals("G")) {
-				//TODO: Call current gear
-			}else if(action.equals("O")) {
-				//TODO: Call odometer
 			}
-		}else if(OnorOff == false) {
+			else if(action.equals("B") || action.equals("b")) {
+				System.out.print("Brake by how many mph? => "); 
+				Scanner sc1 = new Scanner(System.in);
+				int brakePedal = sc1.nextInt();
+				sc1.close();
+				brakeSpeed(brakePedal);
+				System.out.println("Slowing by " + brakePedal + " mph!");
+				
+			}
+			else if(action.equals("S") || action.equals("s")) {
+				toStringSpeed();
+			}
+			else if(action.equals("G") || action.equals("g")) {
+				toStringGear();
+			}
+			else if(action.equals("O") || action.equals("o")) {
+				toStringOdometer();
+			}
+			else if(action.equals("T") || action.equals("t")){
+				turnOff();
+			}sc.close();
+		}
+		else if(OnorOff == false) {
 			System.out.println("Your car isn't started, its not goin anywhere!");
 		}
 		
 	}
+	
+	/**
+	 * Turns car off
+	 * @return sets engine state to false
+	 */
+	public boolean turnOff() {
+		return OnorOff = false;
+	}
+	
 	/**
 	 * Method to make the car accelerate faster in units of miles per hour
 	 * @param x how much your asking the car to accelerate
 	 * @return speed the car is traveling
 	 */
-	public static int accelerateSpeed(int x) {
-		//TODO: increase by a certain amount
+	public int accelerateSpeed(int x) {
+		int speed = getSpeedCurrent();
 		//TODO: set speedCurrent with increase
 		//TODO: return that amount to 		
 		
@@ -104,12 +137,12 @@ public class MyCar {
 	 * @param x is attribute to turn car on or off
 	 * @return boolean for true or false, default manually set false so car will be off!
 	 */
-	public static boolean turnOn(Boolean x) {
+	public boolean turnOn(Boolean x) {
 		System.out.println("Turn car on? Y/N? ");
 		
 		Scanner sc = new Scanner(System.in);
 		String ignition = sc.nextLine();
-		sc.close();
+		
 		
 		if(ignition.equals("Yes") || ignition.equals("Y") ||ignition.equals("yes") || ignition.equals("y")){
 			System.out.println("Car Started!");
@@ -124,8 +157,22 @@ public class MyCar {
 		
 	}
 	
-	public static void toStringSpeed() {
-		System.out.println(getSpeedCurrent() + "MPH");
+	public void toStringOdometer() {
+		System.out.println(getOdometer() + " miles");
+	}
+	
+	/*
+	 * Method pulls and prints which gear the car is in
+	 */
+	public void toStringGear() {
+		System.out.println(getInGear()+" gear");
+	}
+	
+	/**
+	 * Method to print out current traveling speed
+	 */
+	public void toStringSpeed() {
+		System.out.println(getSpeedCurrent() + " MPH");
 	}
 
 	//setters and getters block, nothing interesting here
@@ -142,5 +189,6 @@ public class MyCar {
 	public void setOdometer(int odometer){this.odometer = odometer;}
 	public int getTackometer() {return tackometer;}
 	public void setTackometer(int tackometer) {this.tackometer = tackometer;}
+	
 	
 }
