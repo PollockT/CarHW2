@@ -92,9 +92,8 @@ public class MyCar {
 	 */
 	public int accelerateSpeed(int x) {
 		int speed = getSpeedCurrent();
-		//TODO: set speedCurrent with increase
-		//TODO: return that amount to 		
-		
+		speed = speed + x;
+		setSpeedCurrent(x);		
 		return x;
 	}
 	
@@ -104,10 +103,9 @@ public class MyCar {
 	 * @return speed the car is traveling
 	 */
 	public int brakeSpeed(int x) {
-		//TODO: slow down by a certain amount
-		//TODO: set speedCurrent to the slowed rate
-		//TODO: return that amount to x
-
+		int speed = getSpeedCurrent();
+		speed = speed - x;
+		setSpeedCurrent(x);
 		return x;
 	}
 	
