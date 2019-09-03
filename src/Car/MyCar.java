@@ -20,9 +20,12 @@ package Car;
 	    public MyCar(int odometer, String make, String model) {
 	        this.odometer = odometer;
 	        this.make = make;
-	        this.model = model;
-
-	    }
+	        this.model = model;}
+	    
+	    /*
+	     * Default constructor if no information is fed into object when it is being created.
+	     */
+	    public MyCar() {}
 
 	    /**
 	     * Method directly controls what gear the car is in, like an automatic car.
@@ -57,7 +60,7 @@ package Car;
 	            setCurrentGear(6);
 	        }
 	       return x;
-	    }
+	       }
 
 	    /**
 	     * Method prints out the current gear the class is in.
@@ -66,13 +69,12 @@ package Car;
 	        checkGear(getSpeedCurrent());
 	        System.out.println("Your in gear " + getCurrentGear());
 	    }
+	    
 	    /**
 	     * Method that prints the speed the car is currently traveling at.
 	     */
 	    public void toStringSpeed(){
-
 	        System.out.println("Your current speed is " + getSpeedCurrent() + "mph!");
-
 	    }
 
 	    /**
@@ -84,25 +86,29 @@ package Car;
 
 	    /**
 	     * Method allows the object to de-accelerate speed, and then adds it to the current speed while
-	     * printing to the screen only the amount of the de-acceleration
+	     * printing to the screen only the amount of the de-acceleration. It will then check the current
+	     * speed and update the gear accordingly
 	     * @param x brake amount
 	     * @return final speed
 	     */
 	    public int brakeSpeed(int x){
 	        System.out.println("Braking down " + x + "mph!");
 	        setSpeedCurrent(getSpeedCurrent() - x);
+	        checkGear(getSpeedCurrent());
 	        return x;
 	    }
 
 	    /**
 	     * Method allows the object to accelerate speed, and then adds it to the current speed while
-	     * printing to the screen only the amount of the acceleration
+	     * printing to the screen only the amount of the acceleration. It will then check the current
+	     * speed and update the gear accordingly
 	     * @param x acceleration
 	     * @return final speed
 	     */
 	    public int accelerateSpeed(int x){
 	        System.out.println("Accelerating up " + x + "mph!");
 	        setSpeedCurrent(getSpeedCurrent() + x);
+	        checkGear(getSpeedCurrent());
 	        return x;
 	    }
 
@@ -124,7 +130,7 @@ package Car;
 	    public void carStatus(){
 	        System.out.println("Your car is traveling at " + getSpeedCurrent() + "mph.");
 	        System.out.println("Your car is in gear " + getCurrentGear() + ".");
-	        System.out.println("You have " + getOdometer() + "miles on the car.");
+	        System.out.println("You have " + getOdometer() + " miles on the car.");
 	        System.out.println("The car is a " + getModel() + " made by " + getMake());
 	    }
 

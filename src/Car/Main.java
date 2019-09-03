@@ -2,7 +2,7 @@ package Car;
 
 import java.util.Scanner;
 
-public class RadomCar {
+public class Main {
 
 
     public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class RadomCar {
 
         while(!action.equals("QUIT") || !action.equals("quit")) {
 
-            System.out.println("What would you like to do now?");
+            System.out.println("\nWhat would you like to do now?");
             mainMenu();
             action = input.next();
             if(action.equals("I") || action.equals("i")){
